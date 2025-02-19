@@ -106,12 +106,12 @@ def generate_description(diff_output, temperature, provider_name, model_name):
     
     provider_class = get_provider_class(provider_name)
 
-    prompt = f"""**Instructions:**
-
+    prompt = f"""
 Please generate a **Pull Request description** for the provided diff, following these guidelines:
-- Add appropriate emojis to the description.
+- The description should begin with a brief summary of the changes using at least 2 sentences and at most 6 sentences.
 - Do **not** include the words "Title" and "Description" in your output.
 - Format your answer in **Markdown**.
+- The description should reflect the changes made as best as possible. To do this, you should group related changes together
 
 **Diff:**
 {diff_output}"""
