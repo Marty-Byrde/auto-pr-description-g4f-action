@@ -175,7 +175,7 @@ def update_pr_description(github_token, context, pr_number, generated_descriptio
 
     print(f"Keeping this part of the description: {base_description}")
 
-    new_description = f"""{base_description}\n\n{auto_generated_marker}\n{generated_description}"""
+    new_description = f"""{base_description}\n\n{auto_generated_marker}\n\n{generated_description}"""
 
     try:
         if current_description and base_description not in new_description:
