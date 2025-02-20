@@ -84,7 +84,7 @@ def main():
             generated_description = generate_description(diff_output, temperature, provider_name, model_name)
             print(f"Generated description (attempt {retry_count + 1}):")
             print(generated_description[:100] + "..." if len(generated_description) > 100 else generated_description)
-            if generated_description != "No message received":
+            if generated_description != "No message received" and len(generated_description.strip()) > 0:
                 break
             retry_count += 1
             print(f"Retry {retry_count}/{max_retries}: No message received. Retrying...")
