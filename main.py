@@ -149,7 +149,7 @@ def update_pr_description(github_token, context, pr_number, generated_descriptio
     current_description = pull_request.body or ''
 
     print("current description: ", current_description)
-    if current_description.lower().startswith('> :white_check_mark: description done'):
+    if current_description.lower().startswith('> ✅description done'):
         print("PR description is marked as done. Skipping update.")
         return
 
