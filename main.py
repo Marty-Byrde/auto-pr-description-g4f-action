@@ -109,6 +109,8 @@ def generate_description(diff_output, temperature, provider_name, model_name):
     prompt = f"""
 Please generate a **Pull Request description** for the provided diff, following these guidelines:
 - The description should begin with a brief summary of the changes using at least 2 sentences and at most 6 sentences.
+- Afterwards you should group changes using subheadings for related changes, e.g. Build process improvements, Replacing deprecated methods, etc., as level 3 markdown headings.
+- Describe changes to each file with 1 or sentences in the following format: `- <file-name>: <description>`
 - Do **not** include the words "Title" and "Description" in your output.
 - Format your answer in **Markdown**.
 - The description should reflect the changes made as best as possible. To do this, you should group related changes together
