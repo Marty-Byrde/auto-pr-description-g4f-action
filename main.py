@@ -148,7 +148,14 @@ Please generate a **Pull Request description** for the provided diff, following 
 
     description = chat_completion.choices[0].message.content.strip()
     print(f"Received response from {model_name}. Length: {len(description)} characters")
-    return description
+
+    # Remove markdown code block from response if present (```markdown <content> ```)
+    if description.startswith("```markdown"):
+        description = description[11:]
+        if description.endswith("```"):
+            description = description[:-3]
+
+    return description.strip()
 
 
 def update_pr_description(github_token, context, pr_number, generated_description):
