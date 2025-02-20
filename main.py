@@ -20,8 +20,8 @@ def main():
         # Inputs
         github_token = os.getenv('INPUT_GITHUB_TOKEN')
         temperature = float(os.getenv('INPUT_TEMPERATURE', '0.7'))
-        provider_name = os.environ.get('INPUT_PROVIDER', 'g4f.Provider.Bing')
-        model_name = os.environ.get('INPUT_MODEL', 'gpt-4')
+        provider_name = os.environ.get('INPUT_PROVIDER', 'auto')
+        model_name = os.environ.get('INPUT_MODEL', 'o1-mini')
 
         event_name = os.getenv('GITHUB_EVENT_NAME')
 
