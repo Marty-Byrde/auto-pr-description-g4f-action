@@ -22,6 +22,7 @@ def main():
         temperature = float(os.getenv('INPUT_TEMPERATURE', '0.7'))
         provider_name = os.environ.get('INPUT_PROVIDER', 'auto')
         model_name = os.environ.get('INPUT_MODEL', 'o1-mini')
+        custom_prompt = os.getenv('INPUT_PROMPT')
 
         event_name = os.getenv('GITHUB_EVENT_NAME')
 
@@ -116,7 +117,11 @@ def generate_description(diff_output, temperature, provider_name, model_name):
     
     provider_class = get_provider_class(provider_name)
 
-    prompt = f"""
+    # Use custom prompt if provided, otherwise fallback to default
+    if custom_prompt and custom_prompt.strip():
+        prompt = f"{custom_prompt}\n\n**Diff:**\n{diff_output}"
+    else:
+        prompt = f"""
 Please generate a **Pull Request description** for the provided diff, following these guidelines:
 - The description should begin with a brief summary of the changes using at least 2 sentences and at most 6 sentences.
 - Afterwards you should group changes using subheadings for related changes, e.g. Build process improvements, Replacing deprecated methods, etc., as level 3 markdown headings.
