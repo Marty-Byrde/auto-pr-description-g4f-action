@@ -82,7 +82,7 @@ def main():
         generated_description = None
 
         while retry_count < max_retries:
-            generated_description = generate_description(diff_output, temperature, provider_name, model_name)
+            generated_description = generate_description(diff_output, temperature, provider_name, model_name, custom_prompt)
             print(f"Generated description (attempt {retry_count + 1}):")
             print(generated_description[:100] + "..." if len(generated_description) > 100 else generated_description)
             if generated_description != "No message received" and len(generated_description.strip()) > 0:
@@ -113,7 +113,7 @@ def get_provider_class(provider_name):
     except AttributeError:
         raise ValueError(f"Provider not found: {provider_name}")
     
-def generate_description(diff_output, temperature, provider_name, model_name):
+def generate_description(diff_output, temperature, provider_name, model_name, custom_prompt=None):
     
     provider_class = get_provider_class(provider_name)
 
